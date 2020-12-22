@@ -1,0 +1,51 @@
+function solution(board, moves) {
+    var n = change_board(board);
+    var basket = move_doll(n, moves);
+    var cnt = is_same(basket);
+    
+    return cnt;
+}
+
+function is_same(basket) {
+    var cnt = 0;
+
+    for(;;) {
+        let len = basket.length;
+        for(var i = 0; i < basket.length - 1; i++) {
+            if(basket[i] == basket[i + 1]) {
+                basket.splice(i, 2);
+                cnt+= 2;
+            }
+        }
+        if(basket.length == len) break;
+    }
+    
+    return cnt;
+}
+
+function move_doll(board, moves) {
+    var basket = [];
+    var cnt = 0;
+    
+    for(var i = 0; i < moves.length; i++) {
+        let idx = moves[i] - 1;
+        if(board[idx][0] != undefined) {
+            basket.push(board[idx][0]);
+        }
+        board[idx].shift();
+    }
+    
+    return basket;
+}
+
+function change_board(board) {
+    var tmp = [];
+    for(var i = 0; i < board.length; i++) {
+        tmp[i] = [];
+        for(var j = 0; j < board.length; j++) {
+            if(board[j][i]!= 0) tmp[i].push(board[j][i]);
+        }
+    }
+    
+    return tmp;
+}
