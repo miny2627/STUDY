@@ -1,0 +1,11 @@
+function solution(a, b) {
+    var week = ['FRI','SAT','SUN','MON','TUE','WED','THU']
+    var tmp = [31,29,31,30,31,30,31,31,30,31,30,31];
+    tmp.splice(a - 1, 13 - a)
+    let diff = tmp.reduce(function add(sum, val) {
+        return sum + val;
+    },0) + b - 1
+    
+    
+    return week[diff%7];
+}
