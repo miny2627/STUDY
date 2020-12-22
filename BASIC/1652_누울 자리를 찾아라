@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+void count(string* s, int n) {
+	int r = 0, c = 0;
+	int cnt1, cnt2;
+
+	for (int i = 0; i < n; i++) {
+		cnt1 = 0, cnt2 = 0;
+		for (int j = 0; j < n; j++) {
+			// 가로
+			if (s[i][j] == '.') cnt1++;
+			else {
+				if (cnt1 >= 2) r++;
+				cnt1 = 0;
+			}
+			// 세로
+			if (s[j][i] == '.') cnt2++;
+			else {
+				if (cnt2 >= 2) c++;
+				cnt2 = 0;
+			}
+		}
+		if (cnt1 >= 2) r++;
+		if (cnt2 >= 2) c++;
+	}
+	cout << r << " " << c << endl;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	string* s = new string[n];
+
+	for (int i = 0; i < n; i++) {
+		cin >> s[i];
+	}
+
+	count(s, n);
+
+	return 0;
+}
