@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+void cycle(int n) {
+	int cnt = 0;
+	int num = n;
+
+	while (true) {
+		int a = num / 10;
+		int b = num % 10;
+		int r = (a + b) % 10;
+		num = b * 10 + r;
+		cnt++;
+
+		if (num == n) break;
+	}
+	cout << cnt << endl;
+}
+
+int main() {
+	int n;
+	cin >> n;
+
+	cycle(n);
+
+	return 0;
+}
